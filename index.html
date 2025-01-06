@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Recommendation System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+h1 {
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+.list-group-item {
+    background-color: #ffffff;
+    border: 1px solid #e3e6eb;
+    transition: background-color 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Song Recommender</a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center mb-4">Find Your Next Favorite Song</h1>
+                <form method="POST" action="/recommend">
+                    <div class="mb-3">
+                        <label for="songName" class="form-label">Enter Song Name:</label>
+                        <input type="text" class="form-control" id="songName" name="song_name" placeholder="Song Name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Get Recommendations</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        {% if recommendations %}
+        <h2 class="text-center mt-5">Recommended Songs</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <ul class="list-group">
+                    {% for song in recommendations %}
+                    <li class="list-group-item">
+                        <strong>{{ song.name }}</strong> by {{ song.artists }} ({{ song.year }})
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="bg-light text-center py-3 mt-5">
+        <p>&copy; 2025 Song Recommender. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
